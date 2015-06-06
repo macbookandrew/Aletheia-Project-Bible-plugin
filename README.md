@@ -18,7 +18,7 @@ CSV file should be saved with UTF-8 encoding to properly maintain accented and o
 
 ##Sample CSV
 
-See the table below, or download a [sample empty file](sample.zip).
+See the table below, or download a [sample empty file](sample/sample-CSV.zip).
 
 | book_id | localized_book_name | chapter_num | verse_num | verse_text                                                 |
 |---------|---------------------|-------------|-----------|------------------------------------------------------------|
