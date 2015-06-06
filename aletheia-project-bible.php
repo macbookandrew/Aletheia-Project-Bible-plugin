@@ -23,11 +23,39 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+global $apb_db_version;
+$apb_db_version = '1.0';
+
 // add activation/deactivation hooks
-function activation() {
-    require_once( 'inc/activation.php' );
+function apb_install() {
+    global $wpdb;
+
+    $apb_text_table_name = $wpdb->prefix . 'bible_text';
+    $apb_chapter_headers_table_name = $wpdb->prefix . 'bible_chapter_headers';
+
+    // set up databases
+    $charset_collate = $wpdb->get_charset_collate();
+    $apb_sql = "CREATE TABLE $apb_text_table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        book_id_number int(2) NOT NULL DEFAULT '0',
+        localized_book_name varchar(100) NOT NULL DEFAULT '',
+        chapter_num int(3) NOT NULL DEFAULT '0',
+        verse_num int(3) NOT NULL DEFAULT '0',
+        verse_text text NOT NULL,
+        PRIMARY KEY  id,
+        FULLTEXT KEY  verse_content (verse_text)
+    ) $charset_collate;
+    CREATE TABLE $apb_chapter_headers_table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        book_id_number int(2) NOT NULL DEFAULT '0',
+        chapter_num int(3) NOT NULL DEFAULT '0',
+        chapter_summary text NOT NULL
+    ) $charset_collate;";
+
+    require_once( ABSPATH . 'wp-admin/includise/upgrade.php' );
+    dbDelta( $apb_sql );
 }
-register_activation_hook( __FILE__, 'activation' );
+register_activation_hook( __FILE__, 'apb_install' );
 
 function deactivation() {
     require_once( 'inc/deactivation.php' );
