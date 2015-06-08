@@ -1,6 +1,8 @@
-DROP TABLE IF EXISTS `text`;
+<?php
 
-CREATE TABLE `text` (
+$sql_string .= "DROP TABLE IF EXISTS `$apb_text_table_name`;
+
+CREATE TABLE `$apb_text_table_name` (
   `verse_index` int(6) NOT NULL AUTO_INCREMENT,
   `book_id_number` int(3) NOT NULL DEFAULT '0',
   `english_book_name` varchar(100) NOT NULL DEFAULT '',
@@ -14,7 +16,7 @@ CREATE TABLE `text` (
 LOCK TABLES `text` WRITE;
 /*!40000 ALTER TABLE `text` DISABLE KEYS */;
 
-INSERT INTO `text` (`verse_index`, `book_id_number`, `english_book_name`, `chapter_num`, `verse_num`, `verse_text`)
+INSERT INTO $apb_text_table_name (`verse_index`, `book_id_number`, `english_book_name`, `chapter_num`, `verse_num`, `verse_text`)
 VALUES
 	(1,1,'Genesis',1,1,'In the beginning God created the heaven and the earth.'),
 	(2,1,'Genesis',1,2,'And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.'),
@@ -1552,3 +1554,8 @@ VALUES
 
 /*!40000 ALTER TABLE `text` ENABLE KEYS */;
 UNLOCK TABLES;
+";
+
+$import_sample = $wpdb->query(
+    $wpdb->prepare( $sql_string );
+);

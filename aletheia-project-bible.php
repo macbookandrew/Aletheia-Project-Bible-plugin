@@ -61,6 +61,11 @@ function apb_install( $apb_text_table_name, $apb_chapter_headers_table_name ) {
 }
 register_activation_hook( __FILE__, 'apb_install' );
 
+// add sample data when requested
+function apb_add_sample( $apb_text_table_name, $apb_chapter_headers_table_name ) {
+    include('sample/import-sample.php');
+}
+
 function deactivation() {
     require_once( 'inc/deactivation.php' );
 }
