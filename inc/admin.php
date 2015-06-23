@@ -78,12 +78,13 @@ function apb_language_render() {
         <option value="cs">Czech</option>
         <option value="cy">Welsh</option>
         <option value="da">Danish</option>
-        <option value="de">German (Germany)</option>
+        <option value="de">German (generic)</option>
         <option value="de-de">German (Germany)</option>
         <option value="el">Greek</option>
+        <option value="en">English (generic)</option>
         <option value="en-GB">English (United Kingdom)</option>
         <option value="en-US">English (United States)</option>
-        <option value="es">Spanish (Spain)</option>
+        <option value="es">Spanish (generic)</option>
         <option value="es-ES">Spanish (Spain)</option>
         <option value="es-US">Spanish (United States)</option>
         <option value="es-MX">Spanish (Mexico)</option>
@@ -92,7 +93,7 @@ function apb_language_render() {
         <option value="fa">Persian</option>
         <option value="fi">Finnish</option>
         <option value="fil-Latn">Filipino</option>
-        <option value="fr">French (France)</option>
+        <option value="fr">French (generic)</option>
         <option value="fr-FR">French (France)</option>
         <option value="fr-CA">French (Canada)</option>
         <option value="ga">Irish</option>
@@ -108,7 +109,7 @@ function apb_language_render() {
         <option value="id">Indonesian</option>
         <option value="ig-Latn">Igbo</option>
         <option value="is">Icelandic</option>
-        <option value="it">Italian (Italy)</option>
+        <option value="it">Italian (generic)</option>
         <option value="it-it">Italian (Italy)</option>
         <option value="ja">Japanese</option>
         <option value="ka">Georgian</option>
@@ -131,7 +132,7 @@ function apb_language_render() {
         <option value="mt">Maltese</option>
         <option value="nb">Norwegian (Bokmal)</option>
         <option value="ne">Nepali (Nepal)</option>
-        <option value="nl">Dutch (Netherlands)</option>
+        <option value="nl">Dutch (generic)</option>
         <option value="nl-BE">Dutch (Netherlands)</option>
         <option value="nn">Norwegian (Nynorsk)</option>
         <option value="nso">Sesotho sa Leboa</option>
