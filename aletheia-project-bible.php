@@ -39,7 +39,7 @@ function apb_install( $apb_text_table_name, $apb_chapter_headers_table_name ) {
 
     // set up databases
     $charset_collate = $wpdb->get_charset_collate();
-    $apb_sql = "CREATE TABLE $apb_text_table_name (
+    $apb_sql = "CREATE TABLE $apb_text_table_name IF NOT EXISTS (
         id mediumint(9) NOT NULL AUTO_INCREMENT,
         book_id_number int(2) NOT NULL DEFAULT '0',
         localized_book_name varchar(100) NOT NULL DEFAULT '',
@@ -49,7 +49,7 @@ function apb_install( $apb_text_table_name, $apb_chapter_headers_table_name ) {
         PRIMARY KEY  id,
         FULLTEXT KEY  verse_content (verse_text)
     ) $charset_collate;
-    CREATE TABLE $apb_chapter_headers_table_name (
+    CREATE TABLE $apb_chapter_headers_table_name IF NOT EXISTS (
         id mediumint(9) NOT NULL AUTO_INCREMENT,
         book_id_number int(2) NOT NULL DEFAULT '0',
         chapter_num int(3) NOT NULL DEFAULT '0',
