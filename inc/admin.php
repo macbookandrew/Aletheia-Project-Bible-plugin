@@ -8,12 +8,12 @@ add_action( 'admin_menu', 'apb_add_admin_menu' );
 add_action( 'admin_init', 'apb_settings_init' );
 
 
-function apb_add_admin_menu(  ) {
+function apb_add_admin_menu() {
 	add_options_page( 'Aletheia Project', 'Aletheia Project', 'manage_options', 'aletheia_project', 'apb_options_page' );
 }
 
 
-function apb_settings_init(  ) {
+function apb_settings_init() {
 
 	register_setting( 'pluginPage', 'apb_settings' );
 
@@ -39,18 +39,16 @@ function apb_settings_init(  ) {
 		'pluginPage',
 		'apb_pluginPage_section'
 	);
-
-
 }
 
 
-function apb_csv_upload_render(  ) {
+function apb_csv_upload_render() {
 	echo '<input type="file" id="csv" /><br/>';
     echo '<a target="_blank" href="' . plugin_dir_url( __FILE__ ) . 'starter-csv.zip">Download a starter CSV file</a>';
 }
 
 
-function apb_language_render(  ) {
+function apb_language_render() {
 
 	$options = get_option( 'apb_settings' );
 
@@ -173,13 +171,12 @@ function apb_language_render(  ) {
 }
 
 
-function apb_settings_section_callback(  ) {
+function apb_settings_section_callback() {
 	echo __( 'Upload a CSV file and choose the language', 'apb' );
 }
 
 
-function apb_options_page(  ) {
-
+function apb_options_page() {
 	?>
 	<form action='options.php' method='post'>
 
@@ -195,5 +192,3 @@ function apb_options_page(  ) {
 	<?php
 
 }
-
-?>
