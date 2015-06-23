@@ -31,14 +31,6 @@ function apb_settings_init() {
 	);
 
 	add_settings_field(
-		'apb_csv_upload',
-		__( 'Choose a CSV file', 'apb' ),
-		'apb_csv_upload_render',
-		'pluginPage',
-		'apb_pluginPage_section'
-	);
-
-	add_settings_field(
 		'apb_language',
 		__( 'Language', 'apb' ),
 		'apb_language_render',
@@ -49,14 +41,6 @@ function apb_settings_init() {
     wp_register_script( 'chosen', plugins_url( '/chosen/chosen.jquery.min.js', __FILE__ ) );
     wp_register_style( 'chosen', plugins_url( '/chosen/chosen.min.css', __FILE__ ) );
 }
-
-
-function apb_csv_upload_render() {
-	echo '<input type="file" id="csv" /><br/>';
-    echo '<p>Make sure the file is saved with UTF-8 encoding (look in the &ldquo;Save As&hellip;&rdquo; options when saving from Excel or Numbers).</p>';
-    echo '<a target="_blank" href="' . plugin_dir_url( __FILE__ ) . 'starter-csv.zip">Download a starter CSV file</a>';
-}
-
 
 function apb_language_render() {
 
@@ -183,7 +167,7 @@ function apb_language_render() {
 
 
 function apb_settings_section_callback() {
-	echo __( 'Upload a CSV file and choose the language', 'apb' );
+	echo __( 'Choose the language for this site:', 'apb' );
 }
 
 
