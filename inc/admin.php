@@ -57,17 +57,20 @@ function apb_language_render() {
     echo '</select>';
 }
 
-
 function apb_settings_section_callback() {
 	echo __( 'Choose the language for this site:', 'apb' );
 }
-
 
 function apb_options_page() {
 	?>
 	<form action='options.php' method='post'>
 
 		<h2>Aletheia Project</h2>
+
+        <p><a target="_blank" href="<?php echo plugin_dir_url( __FILE__ ); ?>starter.zip">Download starter and sample CSV files</a></p>
+        <p>In the <code>language</code> column of the file to import, enter the language code in [square brackets] below.</p>
+        <p>Make sure the file is saved with UTF-8 encoding (look in the &ldquo;Save As&hellip;&rdquo; options when saving from Excel or Numbers).</p>
+        <p>To upload the CSV file, use the webhost&rsquo;s phpMyAdmin or another MySQL tool, making sure that the CSV column headers match the database column names.</p>
 
 		<?php
 		settings_fields( 'pluginPage' );
