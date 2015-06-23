@@ -50,7 +50,7 @@ function apb_install() {
         $apb_sql = "CREATE TABLE `$apb_text_table_name` (
             `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
             `language` varchar(20) DEFAULT NULL,
-            `book_id_number` int(2) DEFAULT NULL,
+            `book_id` int(2) DEFAULT NULL,
             `localized_book_name` varchar(100) DEFAULT NULL,
             `chapter_num` int(3) DEFAULT NULL,
             `verse_num` int(3) DEFAULT NULL,
