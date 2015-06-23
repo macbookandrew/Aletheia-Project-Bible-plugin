@@ -7,6 +7,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'admin_menu', 'apb_add_admin_menu' );
 add_action( 'admin_init', 'apb_settings_init' );
 
+// create TOC when requested
+global $apb_text_table_name;
+global $apb_TOC_table_name;
+if ( $_GET['create_TOC'] === 'true' ) {
+    if( $wpdb->get_var( "SHOW TABLES LIKE '$apb_TOC_table_name'") != $apb_text_table_name ) {
+        $apb_sql = "DELETE FROM `$apb_TOC_table_name`;
+            ALTER TABLE `$apb_TOC_table_name` AUTO_INCREMENT=0;
+            INSERT INTO `$apb_TOC_table_name` (`language`, `book_id`, `localized_book_name`)
+            SELECT `language`, `book_id`, `localized_book_name` FROM `$apb_text_table_name` GROUP BY `language`, `localized_book_name` ORDER BY `book_id`;";
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        dbDelta( $apb_sql );
+    }
+}
 
 function apb_add_admin_menu() {
 	$my_options_page = add_options_page( 'Aletheia Project', 'Aletheia Project', 'manage_options', 'aletheia_project', 'apb_options_page' );
@@ -76,7 +89,7 @@ function apb_database_render() {
 
 function apb_options_page() {
 	?>
-	<form action='options.php' method='post'>
+	<form action="options.php" method="post">
 
 		<h2>Aletheia Project</h2>
 
@@ -93,6 +106,26 @@ function apb_options_page() {
 		?>
 
 	</form>
-	<?php
 
+    <h3>Table of Contents</h3>
+    <p>After uploading the CSV file, come back to this page and press the button below to create the Table of Contents.</p>
+    <a class="button button-primary" href="options-general.php?page=aletheia_project&create_TOC=true">Create Table of Contents</a>
+    <?php
+    if ( $_GET['create_TOC'] === 'true' ) {
+        global $wpdb;
+        global $apb_TOC_table_name;
+        echo '<table>';
+        echo '<thead><td>id</td><td>language</td><td>book_id</td><td>localized_book_name</td></thead>';
+        $TOC_query = $wpdb->get_results("SELECT * FROM $apb_TOC_table_name;");
+
+        foreach ( $TOC_query as $TOC_element ) {
+            echo '<tr>';
+            echo '<td>' . $TOC_element->id . '</td>';
+            echo '<td>' . $TOC_element->language . '</td>';
+            echo '<td>' . $TOC_element->book_id . '</td>';
+            echo '<td>' . $TOC_element->localized_book_name . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
 }
