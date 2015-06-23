@@ -45,7 +45,8 @@ function apb_settings_init(  ) {
 
 
 function apb_csv_upload_render(  ) {
-	echo '<input type="file" id="csv" />';
+	echo '<input type="file" id="csv" /><br/>';
+    echo '<a target="_blank" href="' . plugin_dir_url( __FILE__ ) . 'starter-csv.zip">Download a starter CSV file</a>';
 }
 
 
