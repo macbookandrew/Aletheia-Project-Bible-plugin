@@ -27,6 +27,8 @@ global $wpdb;
 global $apb_db_version;
 $apb_db_version = '1.0';
 
+global $apb_text_table_name;
+global $apb_chapter_headers_table_name;
 $apb_text_table_name = $wpdb->prefix . 'bible_text';
 $apb_chapter_headers_table_name = $wpdb->prefix . 'bible_chapter_headers';
 
@@ -38,8 +40,8 @@ if (! is_admin() ) require_once( 'inc/shortcode.php' );
 function apb_install() {
     global $wpdb;
 
-    $apb_text_table_name = $wpdb->prefix . 'bible_text';
-    $apb_chapter_headers_table_name = $wpdb->prefix . 'bible_chapter_headers';
+    global $apb_text_table_name;
+    global $apb_chapter_headers_table_name;
 
     // set up databases
     $charset_collate = $wpdb->get_charset_collate();
