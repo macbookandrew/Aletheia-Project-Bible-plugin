@@ -8,16 +8,15 @@ add_action( 'admin_menu', 'apb_add_admin_menu' );
 add_action( 'admin_init', 'apb_settings_init' );
 
 // create TOC when requested
+global $wpdb;
 global $apb_text_table_name;
 global $apb_TOC_table_name;
 if ( $_GET['create_TOC'] === 'true' ) {
     if( $wpdb->get_var( "SHOW TABLES LIKE '$apb_TOC_table_name'") != $apb_text_table_name ) {
-        $apb_sql = "DELETE FROM `$apb_TOC_table_name`;
-            ALTER TABLE `$apb_TOC_table_name` AUTO_INCREMENT=0;
-            INSERT INTO `$apb_TOC_table_name` (`language`, `book_id`, `localized_book_name`)
-            SELECT `language`, `book_id`, `localized_book_name` FROM `$apb_text_table_name` GROUP BY `language`, `localized_book_name` ORDER BY `book_id`;";
-        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-        dbDelta( $apb_sql );
+        $apb_sql = "TRUNCATE `$apb_TOC_table_name`;
+            INSERT INTO `$apb_TOC_table_name` (`language`, `book_id`, `localized_book_name`, `chapter_count`)
+            SELECT `language`, `book_id`, `localized_book_name`, MAX(`chapter_num`) FROM `$apb_text_table_name` GROUP BY `language`, `localized_book_name` ORDER BY `book_id`;";
+        $wpdb->query( $apb_sql );
     }
 }
 

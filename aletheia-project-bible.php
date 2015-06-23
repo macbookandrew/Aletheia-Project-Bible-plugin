@@ -82,6 +82,7 @@ function apb_install() {
             `language` varchar(20) DEFAULT NULL,
             `book_id` int(2) NOT NULL DEFAULT '0',
             `localized_book_name` varchar(100) DEFAULT NULL,
+            `chapter_count` int(3) NOT NULL DEFAULT '0',
             PRIMARY KEY (`id`)
         ) $charset_collate;";
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
