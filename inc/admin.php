@@ -26,14 +26,22 @@ function apb_settings_init() {
 	add_settings_section(
 		'apb_pluginPage_section',
 		__( 'Bible Data', 'apb' ),
-		'apb_settings_section_callback',
+		'',
 		'pluginPage'
 	);
 
 	add_settings_field(
 		'apb_language',
-		__( 'Language', 'apb' ),
+		__( 'Language:', 'apb' ),
 		'apb_language_render',
+		'pluginPage',
+		'apb_pluginPage_section'
+	);
+
+	add_settings_field(
+		'apb_database',
+		__( 'Database Information:', 'apb' ),
+		'apb_database_render',
 		'pluginPage',
 		'apb_pluginPage_section'
 	);
@@ -57,8 +65,13 @@ function apb_language_render() {
     echo '</select>';
 }
 
-function apb_settings_section_callback() {
-	echo __( 'Choose the language for this site:', 'apb' );
+function apb_database_render() {
+    global $apb_text_table_name;
+    global $apb_chapter_headers_table_name;
+
+    echo '<p>Database to use: <code>'. DB_NAME . '</code></p>';
+    echo '<p>Table for main text: <code>'. $apb_text_table_name . '</code></p>';
+    echo '<p>Table for optional chapter summaries: <code>'. $apb_chapter_headers_table_name . '</code></p>';
 }
 
 function apb_options_page() {
@@ -67,10 +80,11 @@ function apb_options_page() {
 
 		<h2>Aletheia Project</h2>
 
+        <h3>Instructions</h3>
         <p><a target="_blank" href="<?php echo plugin_dir_url( __FILE__ ); ?>starter.zip">Download starter and sample CSV files</a></p>
         <p>In the <code>language</code> column of the file to import, enter the language code in [square brackets] below.</p>
         <p>Make sure the file is saved with UTF-8 encoding (look in the &ldquo;Save As&hellip;&rdquo; options when saving from Excel or Numbers).</p>
-        <p>To upload the CSV file, use the webhost&rsquo;s phpMyAdmin or another MySQL tool, making sure that the CSV column headers match the database column names.</p>
+        <p>To import the CSV file, use the webhost&rsquo;s phpMyAdmin (or another MySQL tool), making sure that the CSV column headers match the database column names.</p>
 
 		<?php
 		settings_fields( 'pluginPage' );
