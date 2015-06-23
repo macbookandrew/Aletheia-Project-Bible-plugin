@@ -57,7 +57,7 @@ function apb_install( $apb_text_table_name, $apb_chapter_headers_table_name ) {
         chapter_summary text NOT NULL
     ) $charset_collate;";
 
-    require_once( ABSPATH . 'wp-admin/includise/upgrade.php' );
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     dbDelta( $apb_sql );
 }
 register_activation_hook( __FILE__, 'apb_install' );
@@ -71,4 +71,3 @@ function deactivation() {
     require_once( 'inc/deactivation.php' );
 }
 register_deactivation_hook( __FILE__, 'deactivation' );
-
