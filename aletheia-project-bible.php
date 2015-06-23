@@ -72,12 +72,6 @@ function apb_install() {
 }
 register_activation_hook( __FILE__, 'apb_install' );
 
-// add sample data when requested
-function apb_add_sample( $apb_text_table_name, $apb_chapter_headers_table_name ) {
-    include('sample/import-sample.php');
-}
-
 function deactivation() {
-
 }
 register_deactivation_hook( __FILE__, 'deactivation' );
