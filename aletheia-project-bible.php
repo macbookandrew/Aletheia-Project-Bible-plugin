@@ -46,14 +46,15 @@ function apb_install() {
 
     if( $wpdb->get_var( "SHOW TABLES LIKE '$apb_text_table_name'") != $apb_text_table_name ) {
         $apb_sql = "CREATE TABLE `$apb_text_table_name` (
-          `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-          `book_id_number` int(2) DEFAULT NULL,
-          `localized_book_name` varchar(100) DEFAULT NULL,
-          `chapter_num` int(3) DEFAULT NULL,
-          `verse_num` int(3) DEFAULT NULL,
-          `verse_text` text,
-          PRIMARY KEY (`id`),
-          FULLTEXT KEY verse_content (`verse_text`)
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `language` varchar(20) DEFAULT NULL,
+            `book_id_number` int(2) DEFAULT NULL,
+            `localized_book_name` varchar(100) DEFAULT NULL,
+            `chapter_num` int(3) DEFAULT NULL,
+            `verse_num` int(3) DEFAULT NULL,
+            `verse_text` text,
+            PRIMARY KEY (`id`),
+            FULLTEXT KEY verse_content (`verse_text`)
         ) $charset_collate;";
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
         dbDelta( $apb_sql );
@@ -61,6 +62,7 @@ function apb_install() {
     if( $wpdb->get_var( "SHOW TABLES LIKE '$apb_chapter_headers_table_name'") != $apb_chapter_headers_table_name ) {
         $apb_sql = "CREATE TABLE $apb_chapter_headers_table_name (
             `id` mediumint(11) unsigned NOT NULL AUTO_INCREMENT,
+            `language` varchar(20) DEFAULT NULL,
             `book_id_number` int(2) NOT NULL DEFAULT '0',
             `chapter_num` int(3) NOT NULL DEFAULT '0',
             `chapter_summary` text NOT NULL,
