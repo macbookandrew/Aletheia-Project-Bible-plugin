@@ -9,9 +9,15 @@ add_action( 'admin_init', 'apb_settings_init' );
 
 
 function apb_add_admin_menu() {
-	add_options_page( 'Aletheia Project', 'Aletheia Project', 'manage_options', 'aletheia_project', 'apb_options_page' );
+	$my_options_page = add_options_page( 'Aletheia Project', 'Aletheia Project', 'manage_options', 'aletheia_project', 'apb_options_page' );
+    add_action( 'admin_print_scripts-' . $my_options_page, 'apb_load_chosen' );
 }
 
+function apb_load_chosen() {
+    wp_enqueue_script( 'chosen' );
+    wp_enqueue_style( 'chosen' );
+    echo "<script type=\"text/javascript\">jQuery(document).ready(function(){jQuery('select.chosen').chosen();});</script>";
+}
 
 function apb_settings_init() {
 
@@ -39,6 +45,9 @@ function apb_settings_init() {
 		'pluginPage',
 		'apb_pluginPage_section'
 	);
+
+    wp_register_script( 'chosen', plugins_url( '/chosen/chosen.jquery.min.js', __FILE__ ) );
+    wp_register_style( 'chosen', plugins_url( '/chosen/chosen.min.css', __FILE__ ) );
 }
 
 
@@ -52,7 +61,7 @@ function apb_language_render() {
 
 	$options = get_option( 'apb_settings' );
 
-    echo '<select name="apb_settings[\'apb_language\']">
+    echo '<select class="chosen" name="apb_settings[\'apb_language\']">
         <option value="af">Afrikaans</option>
         <option value="am">Amharic</option>
         <option value="ar-sa">Arabic (Saudi Arabia)</option>
