@@ -16,7 +16,7 @@ function apb_add_admin_menu() {
 function apb_load_chosen() {
     wp_enqueue_script( 'chosen' );
     wp_enqueue_style( 'chosen' );
-    echo "<script type=\"text/javascript\">jQuery(document).ready(function(){jQuery('select.chosen').chosen();});</script>";
+    echo "<script type=\"text/javascript\">(function(){var cTimer = setInterval(function(){if(window.jQuery){jQuery(document).ready(function(){jQuery('select.chosen').chosen();});clearInterval(cTimer);}},100);})();</script>";
 }
 
 function apb_settings_init() {
