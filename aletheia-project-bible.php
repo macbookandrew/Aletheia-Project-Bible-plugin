@@ -68,6 +68,6 @@ function apb_add_sample( $apb_text_table_name, $apb_chapter_headers_table_name )
 }
 
 function deactivation() {
-    require_once( 'inc/deactivation.php' );
+
 }
 register_deactivation_hook( __FILE__, 'deactivation' );
