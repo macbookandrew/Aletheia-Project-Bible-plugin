@@ -29,8 +29,10 @@ $apb_db_version = '1.0';
 
 global $apb_text_table_name;
 global $apb_chapter_headers_table_name;
+global $apb_TOC_table_name;
 $apb_text_table_name = $wpdb->prefix . 'bible_text';
 $apb_chapter_headers_table_name = $wpdb->prefix . 'bible_chapter_headers';
+$apb_TOC_table_name = $wpdb->prefix . 'bible_TOC';
 
 // include other sections of plugin
 if ( is_admin() ) require_once( 'inc/admin.php' );
@@ -42,6 +44,7 @@ function apb_install() {
 
     global $apb_text_table_name;
     global $apb_chapter_headers_table_name;
+    global $apb_TOC_table_name;
 
     // set up databases
     $charset_collate = $wpdb->get_charset_collate();
@@ -62,12 +65,23 @@ function apb_install() {
         dbDelta( $apb_sql );
     }
     if( $wpdb->get_var( "SHOW TABLES LIKE '$apb_chapter_headers_table_name'") != $apb_chapter_headers_table_name ) {
-        $apb_sql = "CREATE TABLE $apb_chapter_headers_table_name (
+        $apb_sql = "CREATE TABLE `$apb_chapter_headers_table_name` (
             `id` mediumint(11) unsigned NOT NULL AUTO_INCREMENT,
             `language` varchar(20) DEFAULT NULL,
-            `book_id_number` int(2) NOT NULL DEFAULT '0',
+            `book_id` int(2) NOT NULL DEFAULT '0',
             `chapter_num` int(3) NOT NULL DEFAULT '0',
             `chapter_summary` text NOT NULL,
+            PRIMARY KEY (`id`)
+        ) $charset_collate;";
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        dbDelta( $apb_sql );
+    }
+    if( $wpdb->get_var( "SHOW TABLES LIKE '$apb_chapter_headers_table_name'") != $apb_chapter_headers_table_name ) {
+        $apb_sql = "CREATE TABLE `$apb_TOC_table_name` (
+            `id` mediumint(11) unsigned NOT NULL AUTO_INCREMENT,
+            `language` varchar(20) DEFAULT NULL,
+            `book_id` int(2) NOT NULL DEFAULT '0',
+            `localized_book_name` varchar(100) DEFAULT NULL,
             PRIMARY KEY (`id`)
         ) $charset_collate;";
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
