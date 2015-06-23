@@ -53,6 +53,7 @@ function apb_settings_init() {
 
 function apb_csv_upload_render() {
 	echo '<input type="file" id="csv" /><br/>';
+    echo '<p>Make sure the file is saved with UTF-8 encoding (look in the &ldquo;Save As&hellip;&rdquo; options when saving from Excel or Numbers).</p>';
     echo '<a target="_blank" href="' . plugin_dir_url( __FILE__ ) . 'starter-csv.zip">Download a starter CSV file</a>';
 }
 
