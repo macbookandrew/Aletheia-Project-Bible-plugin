@@ -23,6 +23,7 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+global $wpdb;
 global $apb_db_version;
 $apb_db_version = '1.0';
 
