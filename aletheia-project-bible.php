@@ -35,30 +35,40 @@ if ( is_admin() ) require_once( 'inc/admin.php' );
 if (! is_admin() ) require_once( 'inc/shortcode.php' );
 
 // add activation/deactivation hooks
-function apb_install( $apb_text_table_name, $apb_chapter_headers_table_name ) {
+function apb_install() {
     global $wpdb;
+
+    $apb_text_table_name = $wpdb->prefix . 'bible_text';
+    $apb_chapter_headers_table_name = $wpdb->prefix . 'bible_chapter_headers';
 
     // set up databases
     $charset_collate = $wpdb->get_charset_collate();
-    $apb_sql = "CREATE TABLE $apb_text_table_name IF NOT EXISTS (
-        id mediumint(9) NOT NULL AUTO_INCREMENT,
-        book_id_number int(2) NOT NULL DEFAULT '0',
-        localized_book_name varchar(100) NOT NULL DEFAULT '',
-        chapter_num int(3) NOT NULL DEFAULT '0',
-        verse_num int(3) NOT NULL DEFAULT '0',
-        verse_text text NOT NULL,
-        PRIMARY KEY  id,
-        FULLTEXT KEY  verse_content (verse_text)
-    ) $charset_collate;
-    CREATE TABLE $apb_chapter_headers_table_name IF NOT EXISTS (
-        id mediumint(9) NOT NULL AUTO_INCREMENT,
-        book_id_number int(2) NOT NULL DEFAULT '0',
-        chapter_num int(3) NOT NULL DEFAULT '0',
-        chapter_summary text NOT NULL
-    ) $charset_collate;";
 
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    dbDelta( $apb_sql );
+    if( $wpdb->get_var( "SHOW TABLES LIKE '$apb_text_table_name'") != $apb_text_table_name ) {
+        $apb_sql = "CREATE TABLE `$apb_text_table_name` (
+          `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+          `book_id_number` int(2) DEFAULT NULL,
+          `localized_book_name` varchar(100) DEFAULT NULL,
+          `chapter_num` int(3) DEFAULT NULL,
+          `verse_num` int(3) DEFAULT NULL,
+          `verse_text` text,
+          PRIMARY KEY (`id`),
+          FULLTEXT KEY verse_content (`verse_text`)
+        ) $charset_collate;";
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        dbDelta( $apb_sql );
+    }
+    if( $wpdb->get_var( "SHOW TABLES LIKE '$apb_chapter_headers_table_name'") != $apb_chapter_headers_table_name ) {
+        $apb_sql = "CREATE TABLE $apb_chapter_headers_table_name (
+            `id` mediumint(11) unsigned NOT NULL AUTO_INCREMENT,
+            `book_id_number` int(2) NOT NULL DEFAULT '0',
+            `chapter_num` int(3) NOT NULL DEFAULT '0',
+            `chapter_summary` text NOT NULL,
+            PRIMARY KEY (`id`)
+        ) $charset_collate;";
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        dbDelta( $apb_sql );
+    }
 }
 register_activation_hook( __FILE__, 'apb_install' );
 
