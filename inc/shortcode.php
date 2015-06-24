@@ -14,6 +14,7 @@ function apb_shortcode( $attributes ) {
     ), $attributes);
 
     display_selection_form( $language['language'] );
+    display_content();
 }
 add_shortcode( 'apb_display', 'apb_shortcode' );
 
@@ -56,4 +57,29 @@ function display_selection_form( $language ) {
     // print submit button and close form
     echo '<input type="submit" class="button button-primary" value="&rarr;">';
     echo '</form>';
+}
+
+function display_content() {
+    global $wpdb;
+    global $apb_text_table_name;
+
+    // get parameters from query string
+    $book = $_GET['book'];
+    $chapter = $_GET['chapter'];
+
+    // query database
+    $content = $wpdb->get_results( $wpdb->prepare(
+        "SELECT * FROM $apb_text_table_name WHERE book_id = %d AND chapter_num = %d",
+        $book,
+        $chapter
+    ) );
+
+    // print content
+    if ( $content ) {
+        echo '<section class="bible-content"><ol>';
+        foreach ( $content as $verse ) {
+            echo '<li>' . $verse->verse_text . '</li>';
+        }
+        echo '</ol></section>';
+    }
 }
