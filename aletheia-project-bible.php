@@ -95,6 +95,7 @@ function apb_install() {
 register_activation_hook( __FILE__, 'apb_install' );
 
 function deactivation() {
+    // TODO: ask if data and tables should be deleted upon deactivation
 }
 register_deactivation_hook( __FILE__, 'deactivation' );
 
@@ -104,3 +105,5 @@ function register_apb_js() {
     wp_register_script( 'apb-js', plugins_url( 'inc/frontend.js', __FILE__ ), array( 'jquery' ) );
     wp_localize_script( 'apb-js', 'apbAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 }
+
+// TODO: add widget for sidebar use
