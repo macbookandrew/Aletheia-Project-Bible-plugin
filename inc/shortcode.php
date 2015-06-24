@@ -29,8 +29,6 @@ function display_selection_form( $language ) {
     global $apb_TOC_table_name;
     global $query_book;
     global $query_chapter;
-    global $add_my_script;
-    $add_my_script = true;
 
     // get book names and chapter counts
     $apb_books = $wpdb->get_results( "SELECT `book_id`, `localized_book_name`, `chapter_count` FROM $apb_TOC_table_name WHERE `language` LIKE '$language';" );
@@ -72,7 +70,8 @@ function display_selection_form( $language ) {
     echo '<input type="submit" class="button button-primary" value="&rarr;">';
     echo '</form>';
 
-    // enqueue style
+    // enqueue style and script
+    wp_enqueue_script( 'apb-js' );
     wp_enqueue_style( 'bible-navigation', plugins_url( '/frontend.css', __FILE__ ) );
 }
 
