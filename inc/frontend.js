@@ -5,6 +5,7 @@ jQuery(document).ready(function() {
         event.preventDefault();
         var book = jQuery('select#book').val();
         var chapter = jQuery('select#chapter').val();
+        var language = jQuery('input#language').val();
         jQuery.ajax({
             type: 'post',
             dataType: 'html',
@@ -13,6 +14,7 @@ jQuery(document).ready(function() {
                 action: 'bible_navigate',
                 book: book,
                 chapter: chapter,
+                language: language,
             },
             success: function(response) {
                 console.log('success!');
