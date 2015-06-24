@@ -39,9 +39,10 @@ See the table below, or download a [starter file](inc/starter.zip).
 
 ##Special Notes
 
-To include the Hebrew letters in Psalm 119, use the lines in the Psalm 119.csv file included in the [starter file](inc/starter.zip)—just make sure that you update the language accordingly and that each line goes in its proper order among the verses.
+To include the Hebrew letters in Psalm 119, add the lines from the Psalm 119.csv file included in the [starter file](inc/starter.zip)—just make sure that you update the language accordingly and that each line goes in its proper order among the actual verses.
 
-##Language Codes
+
+#Language Codes
 
 | code           | country                                    |                   
 |----------------|--------------------------------------------| 
