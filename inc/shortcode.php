@@ -71,6 +71,9 @@ function display_selection_form( $language ) {
     // print submit button and close form
     echo '<input type="submit" class="button button-primary" value="&rarr;">';
     echo '</form>';
+
+    // enqueue style
+    wp_enqueue_style( 'bible-navigation', plugins_url( '/frontend.css', __FILE__ ) );
 }
 
 function display_content() {
