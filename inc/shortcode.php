@@ -49,7 +49,6 @@ function display_selection_form( $language ) {
         }
     }
     echo ');' . "\n";
-    echo '(function(){var cTimer=setInterval(function(){if(window.jQuery){jQuery(document).ready(function(){jQuery("select#book").on("change",function(){var thisBook=jQuery("select#book").val();var thisBookCount=chapterCount[(thisBook-1)];jQuery("select#chapter").empty();for(i=1;i<=thisBookCount;i++){jQuery("select#chapter").append("<option value=\""+i+"\">"+i+"</option>");}});});clearInterval(cTimer);}},100);})();';
     echo '</script>';
 
     // print menus of books and chapters

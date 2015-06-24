@@ -1,5 +1,6 @@
 jQuery(document).ready(function() {
 
+    // handle form via Ajax
     jQuery('.bible-navigation').on('submit', function(event) {
         event.preventDefault();
         var book = jQuery('select#book').val();
@@ -22,5 +23,15 @@ jQuery(document).ready(function() {
                 console.log(response);
             },
         });
+    });
+
+    // update chapter menu on book menu change
+    jQuery('select#book').on('change',function(){
+        var thisBook=jQuery('select#book').val();
+        var thisBookCount=chapterCount[(thisBook-1)];
+        jQuery('select#chapter').empty();
+        for(i=1; i<=thisBookCount; i++){
+            jQuery('select#chapter').append('<option value="' + i + '">' + i + '</option>');
+        }
     });
 });
