@@ -37,6 +37,7 @@ function apb_shortcode( $attributes ) {
     // enqueue style and script
     wp_enqueue_script( 'apb-js' );
     wp_enqueue_style( 'bible-navigation', plugins_url( '/frontend.css', __FILE__ ) );
+    wp_enqueue_style( 'tinos', '//fonts.googleapis.com/css?family=Tinos:700&subset=hebrew' );
 }
 add_shortcode( 'apb_display', 'apb_shortcode' );
 
