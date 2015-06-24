@@ -7,14 +7,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 // get parameters from query string
 global $query_book;
 global $query_chapter;
-$query_book = esc_html( $_REQUEST['book'] );
-$query_chapter = esc_html( $_REQUEST['chapter'] );
+global $language;
+if ( $_POST ) {
+    $query_book = esc_html( $_POST['book'] );
+    $query_chapter = esc_html( $_POST['chapter'] );
+    if ( ! $language ) {
+        $language = esc_html( $_POST['language'] );
+    }
+}
+// set default parameters
 if ( ! $query_book ) { $query_book = 1; }
 if ( ! $query_chapter ) { $query_chapter = 1; }
-global $language;
-if ( ! $language ) {
-    $language = esc_html( $_REQUEST['language'] );
-}
 
 function apb_shortcode( $attributes ) {
     // get setting from database
@@ -43,7 +46,7 @@ function display_selection_form() {
     $apb_books = $wpdb->get_results( "SELECT `book_id`, `localized_book_name`, `chapter_count` FROM $apb_TOC_table_name WHERE `language` LIKE '$language';" );
 
     // start form
-    echo '<form name="bible-navigation" class="bible-navigation">';
+    echo '<form name="bible-navigation" class="bible-navigation" method="post">';
 
     // print JS with number of chapters
     echo '<script type="text/javascript">';
@@ -58,7 +61,7 @@ function display_selection_form() {
     echo ');' . "\n";
     echo '</script>';
 
-    // print menus of books and chapters
+    // print book menu
     echo '<select id="book" name="book">';
     foreach ( $apb_books as $apb_book ) {
         echo '<option value="' . $apb_book->book_id . '"';
@@ -67,6 +70,7 @@ function display_selection_form() {
     }
     echo '</select>';
 
+    // print chapter menu
     echo '<select id="chapter" name="chapter">';
     for ( $i = 1; $i <= $apb_books[( $query_book - 1 )]->chapter_count; $i++ ) {
         echo '<option value="' . $i . '"';
