@@ -94,3 +94,17 @@ register_activation_hook( __FILE__, 'apb_install' );
 function deactivation() {
 }
 register_deactivation_hook( __FILE__, 'deactivation' );
+
+// add JS file
+add_action( 'init', 'register_apb_js' );
+add_action( 'wp_footer', 'print_apb_js' );
+function register_apb_js() {
+    wp_register_script( 'apb-js', plugins_url( 'inc/frontend.js', __FILE__ ), array( 'jquery' ) );
+    wp_localize_script( 'apb-js', 'apbAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+}
+function print_apb_js() {
+    global $add_my_script;
+    if ( $add_my_script ) {
+        wp_print_scripts( 'apb-js' );
+    }
+}

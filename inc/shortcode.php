@@ -29,6 +29,8 @@ function display_selection_form( $language ) {
     global $apb_TOC_table_name;
     global $query_book;
     global $query_chapter;
+    global $add_my_script;
+    $add_my_script = true;
 
     // get book names and chapter counts
     $apb_books = $wpdb->get_results( "SELECT `book_id`, `localized_book_name`, `chapter_count` FROM $apb_TOC_table_name WHERE `language` LIKE '$language';" );
