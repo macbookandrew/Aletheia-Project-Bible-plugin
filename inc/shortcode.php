@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 // get parameters from query string
 global $query_book;
 global $query_chapter;
-$query_book = esc_html( $_GET['book'] );
-$query_chapter = esc_html( $_GET['chapter'] );
+$query_book = esc_html( $_REQUEST['book'] );
+$query_chapter = esc_html( $_REQUEST['chapter'] );
 
 function apb_shortcode( $attributes ) {
     // get setting from database
@@ -94,5 +94,14 @@ function display_content() {
             echo '<li>' . $verse->verse_text . '</li>';
         }
         echo '</ol></section>';
+
+        if ( defined( 'DOING_AJAX' ) ) {
+            die();
+        }
     }
+
 }
+
+// handle ajax calls
+add_action( "wp_ajax_bible_navigate", "display_content" );
+add_action( "wp_ajax_nopriv_bible_navigate", "display_content" );

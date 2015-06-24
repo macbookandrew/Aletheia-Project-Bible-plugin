@@ -6,16 +6,21 @@ jQuery(document).ready(function() {
         var chapter = jQuery('select#chapter').val();
         jQuery.ajax({
             type: 'post',
-            dataType: 'json',
+            dataType: 'html',
             url: apbAjax.ajaxurl,
             data: {
-                action: 'bible-navigate',
+                action: 'bible_navigate',
                 book: book,
                 chapter: chapter,
             },
             success: function(response) {
+                console.log('success!');
                 jQuery('.bible-content').html(response);
-            }
+            },
+            error: function(response) {
+                console.log('error');
+                console.log(response);
+            },
         });
     });
 });
