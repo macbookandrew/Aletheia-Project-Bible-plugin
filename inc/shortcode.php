@@ -110,7 +110,13 @@ function display_content() {
     if ( $content ) {
         echo '<section class="bible-content"><ol>';
         foreach ( $content as $verse ) {
-            echo '<li>' . $verse->verse_text . '</li>';
+            $text = $verse->verse_text;
+
+            if ( $verse->verse_num === '0' ) {
+                echo '<br/><span class="unnumbered">' . $text . '</span><br/>';
+            } else {
+                echo '<li>' . $verse->verse_text . '</li>';
+            }
         }
         echo '</ol>';
         display_selection_form();
