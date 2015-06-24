@@ -22,6 +22,7 @@ jQuery(document).ready(function() {
                 jQuery('html, body').animate({
                     scrollTop: (jQuery('.bible-content').offset().top)
                 },500);
+                // TODO: add history.pushState and URL support
             },
             error: function(response) {
                 console.log('error');

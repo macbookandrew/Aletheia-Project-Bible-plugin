@@ -104,3 +104,5 @@ function register_apb_js() {
     wp_register_script( 'apb-js', plugins_url( 'inc/frontend.js', __FILE__ ), array( 'jquery' ) );
     wp_localize_script( 'apb-js', 'apbAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 }
+
+// TODO: add widget for sidebar use
