@@ -19,6 +19,9 @@ jQuery(document).ready(function() {
             success: function(response) {
                 console.log('success!');
                 jQuery('.bible-content').fadeOut(function(){jQuery('.bible-content').html(response).fadeIn()});
+                jQuery('html, body').animate({
+                    scrollTop: (jQuery('.bible-content').offset().top)
+                },500);
             },
             error: function(response) {
                 console.log('error');
