@@ -30,8 +30,13 @@ function apb_shortcode( $attributes ) {
     global $language;
     $language = $shortcode_attributes['language'];
 
+    // call form and content functions
     display_selection_form( $language );
     display_content( $language );
+
+    // enqueue style and script
+    wp_enqueue_script( 'apb-js' );
+    wp_enqueue_style( 'bible-navigation', plugins_url( '/frontend.css', __FILE__ ) );
 }
 add_shortcode( 'apb_display', 'apb_shortcode' );
 
@@ -84,9 +89,6 @@ function display_selection_form() {
     echo '<input type="submit" class="button button-primary" value="&rarr;">';
     echo '</form>';
 
-    // enqueue style and script
-    wp_enqueue_script( 'apb-js' );
-    wp_enqueue_style( 'bible-navigation', plugins_url( '/frontend.css', __FILE__ ) );
 }
 
 function display_content() {
@@ -110,7 +112,10 @@ function display_content() {
         foreach ( $content as $verse ) {
             echo '<li>' . $verse->verse_text . '</li>';
         }
-        echo '</ol></section>';
+        echo '</ol>';
+        display_selection_form();
+        echo '</section>';
+
 
         if ( defined( 'DOING_AJAX' ) ) {
             die();

@@ -1,11 +1,11 @@
 jQuery(document).ready(function() {
 
     // handle form via Ajax
-    jQuery('.bible-navigation').on('submit', function(event) {
+    jQuery('body').on('submit', 'form.bible-navigation', function(event) {
         event.preventDefault();
-        var book = jQuery('select#book').val();
-        var chapter = jQuery('select#chapter').val();
-        var language = jQuery('input#language').val();
+        var book = jQuery(this).children('#book').val();
+        var chapter = jQuery(this).children('#chapter').val();
+        var language = jQuery(this).children('#language').val();
         jQuery.ajax({
             type: 'post',
             dataType: 'html',
