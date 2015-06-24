@@ -35,8 +35,8 @@ $apb_chapter_headers_table_name = $wpdb->prefix . 'bible_chapter_headers';
 $apb_TOC_table_name = $wpdb->prefix . 'bible_TOC';
 
 // include other sections of plugin
-if ( is_admin() ) require_once( 'inc/admin.php' );
-if (! is_admin() ) require_once( 'inc/shortcode.php' );
+if ( ( is_admin() ) && ( ( ! defined( 'DOING_AJAX' ) ) || ( ! DOING_AJAX ) ) ) require_once( 'inc/admin.php' );
+if ( ( ! is_admin() ) || ( defined( 'DOING_AJAX' ) || DOING_AJAX ) ) require_once( 'inc/shortcode.php' );
 
 // add activation/deactivation hooks
 function apb_install() {
