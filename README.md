@@ -25,3 +25,7 @@ See the table below, or download a [sample empty file](sample/sample-CSV.zip).
 | 1       | Genèse              | 1           | 1         | AU commencement, Dieu créa les cieux et la terre.          |
 | 1       | Genèse              | 1           | 2         | Or la terre était informe et vide, et les ténèbres étaien… |
 | 1       | Genèse              | 1           | 3         | Et Dieu dit : Que la lumière soit; et la lumière fut.      |
+
+##Special Notes
+
+To include the Hebrew letters in Psalm 119, use the lines in the Psalm 119.csv file included in the [starter file](inc/starter.zip)—just make sure that you update the language accordingly and that each line goes in its proper order among the verses.
