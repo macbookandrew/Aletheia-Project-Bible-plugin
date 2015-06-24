@@ -44,7 +44,7 @@ function apb_settings_init() {
 
 	add_settings_field(
 		'apb_language',
-		__( 'Language:', 'apb' ),
+		__( 'Default Language:', 'apb' ),
 		'apb_language_render',
 		'pluginPage',
 		'apb_pluginPage_section'
@@ -68,7 +68,7 @@ function apb_language_render() {
     $installation_language = implode( $options );
     require_once( 'language-codes.php' );
 
-    echo '<select class="chosen" name="apb_settings[\'apb_language\']">';
+    echo '<select class="chosen" name="apb_settings[\'apb_default_language\']">';
     foreach ( $language_codes as $key => $value ) {
         echo '<option value="' . $key . '"';
         if ( $installation_language == $key ) { echo ' selected="selected"'; }
