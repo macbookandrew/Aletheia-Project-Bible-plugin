@@ -9,6 +9,8 @@ global $query_book;
 global $query_chapter;
 $query_book = esc_html( $_REQUEST['book'] );
 $query_chapter = esc_html( $_REQUEST['chapter'] );
+if ( ! $query_book ) { $query_book = 1; }
+if ( ! $query_chapter ) { $query_chapter = 1; }
 global $language;
 if ( ! $language ) {
     $language = esc_html( $_REQUEST['language'] );
