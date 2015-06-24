@@ -76,7 +76,7 @@ function apb_install() {
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
         dbDelta( $apb_sql );
     }
-    if( $wpdb->get_var( "SHOW TABLES LIKE '$apb_chapter_headers_table_name'") != $apb_chapter_headers_table_name ) {
+    if( $wpdb->get_var( "SHOW TABLES LIKE '$apb_TOC_table_name'") != $apb_TOC_table_name ) {
         $apb_sql = "CREATE TABLE `$apb_TOC_table_name` (
             `id` mediumint(11) unsigned NOT NULL AUTO_INCREMENT,
             `language` varchar(20) DEFAULT NULL,
