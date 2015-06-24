@@ -38,6 +38,7 @@ function display_selection_form( $language ) {
 
     // print JS with number of chapters
     echo '<script type="text/javascript">';
+    echo 'var thisChapter = ' . $query_chapter . ';';
     echo 'var chapterCount = new Array(';
     foreach ( $apb_books as $apb_book ) {
         echo $apb_book->chapter_count;
@@ -52,13 +53,17 @@ function display_selection_form( $language ) {
     // print menus of books and chapters
     echo '<select id="book" name="book">';
     foreach ( $apb_books as $apb_book ) {
-        echo '<option value="' . $apb_book->book_id . '">' . $apb_book->localized_book_name . '</option>' . "\n";
+        echo '<option value="' . $apb_book->book_id . '"';
+        if ( $apb_book->book_id == $query_book ) { echo ' selected="selected"'; }
+        echo '>' . $apb_book->localized_book_name . '</option>' . "\n";
     }
     echo '</select>';
 
     echo '<select id="chapter" name="chapter">';
-    for ( $i = 1; $i <= 50; $i++ ) {
-        echo '<option value="' . $i . '">' . $i . '</option>' . "\n";
+    for ( $i = 1; $i <= $apb_books[( $query_book - 1 )]->chapter_count; $i++ ) {
+        echo '<option value="' . $i . '"';
+        if ( $i == $query_chapter ) { echo ' selected="selected"'; }
+        echo '>' . $i . '</option>' . "\n";
     }
     echo '</select>';
 
