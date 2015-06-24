@@ -15,7 +15,7 @@ jQuery(document).ready(function() {
             },
             success: function(response) {
                 console.log('success!');
-                jQuery('.bible-content').html(response);
+                jQuery('.bible-content').fadeOut(function(){jQuery('.bible-content').html(response).fadeIn()});
             },
             error: function(response) {
                 console.log('error');
