@@ -88,6 +88,9 @@ function apb_install() {
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
         dbDelta( $apb_sql );
     }
+
+    // set database version
+    update_option( 'apb_database_version', 1.0 );
 }
 register_activation_hook( __FILE__, 'apb_install' );
 
