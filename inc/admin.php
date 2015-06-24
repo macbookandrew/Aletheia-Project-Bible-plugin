@@ -90,10 +90,13 @@ function apb_options_page() {
 		<h2>Aletheia Project</h2>
 
         <h3>Instructions</h3>
-        <p><a target="_blank" href="<?php echo plugin_dir_url( __FILE__ ); ?>starter.zip">Download starter and sample CSV files</a></p>
-        <p>In the <code>language</code> column of the file to import, enter the language code in [square brackets] below.</p>
-        <p>Make sure the file is saved with UTF-8 encoding (look in the &ldquo;Save As&hellip;&rdquo; options when saving from Excel or Numbers).</p>
-        <p>To import the CSV file, use the webhost&rsquo;s phpMyAdmin (or another MySQL tool), making sure that the CSV column headers match the database column names.</p>
+            <ol>
+            <li><a target="_blank" href="<?php echo plugin_dir_url( __FILE__ ); ?>starter.zip">Download starter and sample CSV files</a>.</li>
+            <li>In the <code>language</code> column of the file to import, enter the language code in [square brackets] below. Make sure the file is saved with UTF-8 encoding (look in the &ldquo;Save As&hellip;&rdquo; options when saving from Excel or Numbers).</li>
+            <li>To import the CSV file, use the webhost&rsquo;s phpMyAdmin (or another MySQL tool), making sure that the CSV column headers match the database column names.</li>
+            <li>Come back to this page and press the &ldquo;Create Table of Contens&rdquo; button below.</li>
+            <li>Use the <code>[apb_display]</code> shortcode on any page to display the navigation menu and content. To use a different language, specify it in the shortcode with the &ldquo;language&rdquo; attribute (example: <code>[apb_display language="en-US"]</code>).</li>
+        </ol>
 
 		<?php
 		settings_fields( 'pluginPage' );
