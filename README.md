@@ -44,6 +44,8 @@ To include the Hebrew letters in Psalm 119, add the lines from the Psalm 119.csv
 
 #Language Codes
 
+Note: if you can’t find a language code here, check the official [Library of Congress file](http://www.loc.gov/standards/iso639-2/ascii_8bits.html).
+
 | code           | country                                    |                   
 |----------------|--------------------------------------------| 
 | af             | Afrikaans                                  | 
