@@ -164,3 +164,11 @@ Note: if you can’t find a language code here, check the official [Library of C
 | zh-Hans        | Chinese (Simplified)                       | 
 | zh-Hant        | Chinese (Traditional)                      | 
 | zu             | isiZulu                                    | 
+
+#Changelog
+
+##1.0.1
+- Add Sranantongo language codes
+
+##1.0
+- Initial plugin
