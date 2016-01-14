@@ -138,6 +138,7 @@ Note: if you can’t find a language code here, check the official [Library of C
 | sk             | Slovak                                     | 
 | sl             | Slovenian                                  | 
 | sq             | Albanian                                   | 
+| sr             | Sranantongo                                | 
 | sr-Cyrl-BA     | Serbian (Cyrillic, Bosnia and Herzegovina) | 
 | sr-Cyrl-RS     | Serbian (Cyrillic, Serbia)                 | 
 | sr-Latn-RS     | Serbian (Latin, Serbia)                    | 

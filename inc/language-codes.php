@@ -90,6 +90,7 @@ $language_codes = array(
     "sk" => "Slovak",
     "sl" => "Slovenian",
     "sq" => "Albanian",
+    "srn" => "Sranantongo",
     "sr-Cyrl-BA" => "Serbian (Cyrillic, Bosnia and Herzegovina)",
     "sr-Cyrl-RS" => "Serbian (Cyrillic, Serbia)",
     "sr-Latn-RS" => "Serbian (Latin, Serbia)",
