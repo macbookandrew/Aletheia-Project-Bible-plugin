@@ -76,6 +76,7 @@ function apb_language_render() {
 
 function apb_database_render() {
     global $apb_text_table_name;
+    global $apb_TOC_table_name;
     global $apb_chapter_headers_table_name;
 
     echo '<p>Database to use: <code>'. DB_NAME . '</code></p>';
