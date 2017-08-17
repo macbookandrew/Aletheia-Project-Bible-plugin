@@ -1,6 +1,6 @@
 # Introduction
 
-This plugin displays the Aletheia Project Bible text using the shortcode `[apb-display]`, with an optional `language` attribute for multiple language support.
+This plugin displays the Aletheia Project Bible text using the shortcode `[apb_display]`, with an optional `language` attribute for multiple language support.
 
 # Installation
 
@@ -8,7 +8,7 @@ This plugin displays the Aletheia Project Bible text using the shortcode `[apb-d
 - Go to the “Aletheia Project” settings page under the “Settings” menu in the backend.
 - Choose the default language from the dropdown list and save changes.
 - After uploading the CSV file (using phpMyAdmin or another MySQL tool of choice) to the database and tables listed by the plugin, go back to the settings page and use the “Create Table of Contents” button to finish the setup.
-- On any page, use the shortcode `[apb-display]` to display the default language, or use `[apb-display language="code"]` with one of the codes listed below to manually specify a language.
+- On any page, use the shortcode `[apb_display]` to display the default language, or use `[apb_display language="code"]` with one of the codes listed below to manually specify a language.
 
 # CSV Formatting
 

@@ -21,7 +21,7 @@ if ( ! $query_chapter ) { $query_chapter = 1; }
 
 function apb_shortcode( $attributes ) {
     // get setting from database
-	$options = get_option( 'apb_settings' );
+    $options = get_option( 'apb_settings' );
     $installation_language = implode( $options );
 
     $shortcode_attributes = shortcode_atts( array(

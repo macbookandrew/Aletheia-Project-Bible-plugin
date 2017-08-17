@@ -18,7 +18,7 @@ if ( $_GET['create_TOC'] === 'true' ) {
 }
 
 function apb_add_admin_menu() {
-	$my_options_page = add_options_page( 'Aletheia Project', 'Aletheia Project', 'manage_options', 'aletheia_project', 'apb_options_page' );
+    $my_options_page = add_options_page( 'Aletheia Project', 'Aletheia Project', 'manage_options', 'aletheia_project', 'apb_options_page' );
     add_action( 'admin_print_scripts-' . $my_options_page, 'apb_load_chosen' );
 }
 
@@ -30,30 +30,30 @@ function apb_load_chosen() {
 
 function apb_settings_init() {
 
-	register_setting( 'pluginPage', 'apb_settings' );
+    register_setting( 'pluginPage', 'apb_settings' );
 
-	add_settings_section(
-		'apb_pluginPage_section',
-		__( 'Bible Data', 'apb' ),
-		'',
-		'pluginPage'
-	);
+    add_settings_section(
+        'apb_pluginPage_section',
+        __( 'Bible Data', 'apb' ),
+        '',
+        'pluginPage'
+    );
 
-	add_settings_field(
-		'apb_language',
-		__( 'Default Language:', 'apb' ),
-		'apb_language_render',
-		'pluginPage',
-		'apb_pluginPage_section'
-	);
+    add_settings_field(
+        'apb_language',
+        __( 'Default Language:', 'apb' ),
+        'apb_language_render',
+        'pluginPage',
+        'apb_pluginPage_section'
+    );
 
-	add_settings_field(
-		'apb_database',
-		__( 'Database Information:', 'apb' ),
-		'apb_database_render',
-		'pluginPage',
-		'apb_pluginPage_section'
-	);
+    add_settings_field(
+        'apb_database',
+        __( 'Database Information:', 'apb' ),
+        'apb_database_render',
+        'pluginPage',
+        'apb_pluginPage_section'
+    );
 
     wp_register_script( 'chosen', plugins_url( '/chosen/chosen.jquery.min.js', __FILE__ ) );
     wp_register_style( 'chosen', plugins_url( '/chosen/chosen.min.css', __FILE__ ) );
@@ -61,7 +61,7 @@ function apb_settings_init() {
 
 function apb_language_render() {
 
-	$options = get_option( 'apb_settings' );
+    $options = get_option( 'apb_settings' );
     $installation_language = implode( $options );
     require_once( 'language-codes.php' );
 
@@ -80,14 +80,15 @@ function apb_database_render() {
 
     echo '<p>Database to use: <code>'. DB_NAME . '</code></p>';
     echo '<p>Table for main text: <code>'. $apb_text_table_name . '</code></p>';
+    echo '<p>Table for book names: <code>'. $apb_TOC_table_name . '</code></p>';
     echo '<p>Table for optional chapter summaries: <code>'. $apb_chapter_headers_table_name . '</code></p>';
 }
 
 function apb_options_page() {
-	?>
-	<form action="options.php" method="post">
+    ?>
+    <form action="options.php" method="post">
 
-		<h2>Aletheia Project</h2>
+        <h2>Aletheia Project</h2>
 
         <h3>Instructions</h3>
             <p>For full instructions, <a href="https://github.com/macbookandrew/Aletheia-Project-Bible-plugin/blob/master/README.md">read this page</a>.</p>
@@ -99,13 +100,13 @@ function apb_options_page() {
             <li>Use the <code>[apb_display]</code> shortcode on any page to display the navigation menu and content. To use a different language, specify it in the shortcode with the &ldquo;language&rdquo; attribute (example: <code>[apb_display language="en-US"]</code>).</li>
         </ol>
 
-		<?php
-		settings_fields( 'pluginPage' );
-		do_settings_sections( 'pluginPage' );
-		submit_button();
-		?>
+        <?php
+        settings_fields( 'pluginPage' );
+        do_settings_sections( 'pluginPage' );
+        submit_button();
+        ?>
 
-	</form>
+    </form>
 
     <h3>Table of Contents</h3>
     <p>After uploading the CSV file, come back to this page and press the button below to create the Table of Contents.</p>
