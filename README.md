@@ -1,8 +1,8 @@
-#Introduction
+# Introduction
 
 This plugin displays the Aletheia Project Bible text using the shortcode `[apb-display]`, with an optional `language` attribute for multiple language support.
 
-#Installation
+# Installation
 
 - Upload the .zip file to the plugins page of your WordPress installation
 - Go to the “Aletheia Project” settings page under the “Settings” menu in the backend.
@@ -10,7 +10,7 @@ This plugin displays the Aletheia Project Bible text using the shortcode `[apb-d
 - After uploading the CSV file (using phpMyAdmin or another MySQL tool of choice) to the database and tables listed by the plugin, go back to the settings page and use the “Create Table of Contents” button to finish the setup.
 - On any page, use the shortcode `[apb-display]` to display the default language, or use `[apb-display language="code"]` with one of the codes listed below to manually specify a language.
 
-#CSV Formatting
+# CSV Formatting
 
 The CSV file must have these column headers:
 
@@ -27,7 +27,7 @@ Use the language code listed below in the language column.
 
 CSV files should be saved with UTF-8 encoding to properly maintain accented and other special characters.
 
-##Sample CSV
+## Sample CSV
 
 See the table below, or download a [starter file](inc/starter.zip).
 
@@ -37,12 +37,12 @@ See the table below, or download a [starter file](inc/starter.zip).
 | fr-FR    | 1       | Genèse              | 1           | 2         | Or la terre était informe et vide, et les ténèbres étaien… |
 | fr-FR    | 1       | Genèse              | 1           | 3         | Et Dieu dit : Que la lumière soit; et la lumière fut.      |
 
-##Special Notes
+## Special Notes
 
 To include the Hebrew letters in Psalm 119, add the lines from the Psalm 119.csv file included in the [starter file](inc/starter.zip)—just make sure that you update the language accordingly and that each line goes in its proper order among the actual verses.
 
 
-#Language Codes
+# Language Codes
 
 Note: if you can’t find a language code here, check the official [Library of Congress file](http://www.loc.gov/standards/iso639-2/ascii_8bits.html).
 
@@ -165,10 +165,10 @@ Note: if you can’t find a language code here, check the official [Library of C
 | zh-Hant        | Chinese (Traditional)                      | 
 | zu             | isiZulu                                    | 
 
-#Changelog
+# Changelog
 
-##1.0.1
+## 1.0.1
 - Add Sranantongo language codes
 
-##1.0
+## 1.0
 - Initial plugin
