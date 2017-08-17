@@ -1,0 +1,26 @@
+{
+  "name": "aletheia-project-bible",
+  "version": "1.0.0",
+  "description": "This plugin displays the Aletheia Project Bible text using the shortcode `[apb_display]`, with an optional `language` attribute for multiple language support.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macbookandrew/Aletheia-Project-Bible-plugin.git"
+  },
+  "author": "AndrewRMinion Design",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/macbookandrew/Aletheia-Project-Bible-plugin/issues"
+  },
+  "homepage": "https://github.com/macbookandrew/Aletheia-Project-Bible-plugin#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "^3.0.1"
+  },
+  "dependencies": {
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}

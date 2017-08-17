@@ -7,3 +7,4 @@
 !*.zip
 [diff "zip"]
 textconv = unzip -c -a
+**/*.min.*

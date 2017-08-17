@@ -1,12 +1,14 @@
-(function(){
+(function($){
     $(document).ready(function() {
 
         // handle form via Ajax
         $('body').on('submit', 'form.bible-navigation', function(event) {
             event.preventDefault();
-            var book = $(this).children('#book').val();
-            var chapter = $(this).children('#chapter').val();
-            var language = $(this).children('#language').val();
+
+            var book = $(this).children('#book').val(),
+                chapter = $(this).children('#chapter').val(),
+                language = $(this).children('#language').val();
+
             $.ajax({
                 type: 'post',
                 dataType: 'html',
@@ -35,9 +37,11 @@
 
         // update chapter menu on book menu change
         $('select#book').on('change',function(){
-            var thisBook=$('select#book').val();
-            var thisBookCount=chapterCount[(thisBook-1)];
+            var thisBook=$('select#book').val(),
+                thisBookCount=chapterCount[(thisBook-1)];
+
             $('select#chapter').empty();
+
             for(i=1; i<=thisBookCount; i++){
                 $('select#chapter').append('<option value="' + i + '">' + i + '</option>');
             }

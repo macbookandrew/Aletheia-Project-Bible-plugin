@@ -102,7 +102,7 @@ register_deactivation_hook( __FILE__, 'deactivation' );
 // add JS file
 add_action( 'init', 'register_apb_js' );
 function register_apb_js() {
-    wp_register_script( 'apb-js', plugins_url( 'inc/frontend.js', __FILE__ ), array( 'jquery' ) );
+    wp_register_script( 'apb-js', plugins_url( 'inc/frontend.min.js', __FILE__ ), array( 'jquery' ) );
     wp_localize_script( 'apb-js', 'apbAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 }
 
