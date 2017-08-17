@@ -3,7 +3,7 @@
  * Plugin Name: Aletheia Project Bible
  * Plugin URI: https://github.com/macbookandrew/Aletheia-Project-Bible-plugin
  * Description: A plugin to import and display Bible text
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: AndrewRMinion Design
  * Author URI: http://andrewrminion.com/
  * License:     GPL2
