@@ -38,7 +38,7 @@
         // update chapter menu on book menu change
         $('select#book').on('change',function(){
             var thisBook = $('select#book option:selected').index(),
-                thisBookCount = chapterCount[(thisBook-1)];
+                thisBookCount = chapterCount[thisBook];
 
             $('select#chapter').empty();
 
