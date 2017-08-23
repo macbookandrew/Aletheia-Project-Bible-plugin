@@ -37,14 +37,17 @@
 
         // update chapter menu on book menu change
         $('select#book').on('change',function(){
-            var thisBook=$('select#book').val(),
-                thisBookCount=chapterCount[(thisBook-1)];
+            var thisBook = $('select#book option:selected').index(),
+                thisBookCount = chapterCount[(thisBook-1)];
 
             $('select#chapter').empty();
 
             for(i=1; i<=thisBookCount; i++){
                 $('select#chapter').append('<option value="' + i + '">' + i + '</option>');
             }
+
+            $('select#chapter').trigger('chosen:updated');
         });
+
     });
 })(jQuery);

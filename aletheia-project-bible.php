@@ -3,7 +3,7 @@
  * Plugin Name: Aletheia Project Bible
  * Plugin URI: https://github.com/macbookandrew/Aletheia-Project-Bible-plugin
  * Description: A plugin to import and display Bible text
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: AndrewRMinion Design
  * Author URI: http://andrewrminion.com/
  * License:     GPL2
@@ -99,7 +99,7 @@ function deactivation() {
 }
 register_deactivation_hook( __FILE__, 'deactivation' );
 
-// add JS file
+// add assets
 add_action( 'init', 'register_apb_assets' );
 function register_apb_assets() {
     wp_register_script( 'apb-js', plugins_url( 'inc/frontend.min.js', __FILE__ ), array( 'jquery' ), NULL, true );
@@ -107,6 +107,9 @@ function register_apb_assets() {
 
     wp_register_style( 'bible-navigation', plugins_url( 'inc/frontend.css', __FILE__ ) );
     wp_register_style( 'tinos', 'https://fonts.googleapis.com/css?family=Tinos:700&subset=hebrew' );
+
+    wp_register_script( 'chosen', 'https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.jquery.min.js', array( 'jquery' ), '1.7.0', true );
+    wp_register_style( 'chosen', 'https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.min.css', array(), '1.7.0' );
 }
 
 // TODO: add widget for sidebar use

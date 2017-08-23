@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $query_book;
 global $query_chapter;
 global $language;
-if ( $_POST ) {
+if ( $_POST && count( $_POST ) > 0 ) {
     $query_book = esc_html( $_POST['book'] );
     $query_chapter = esc_html( $_POST['chapter'] );
     if ( ! $language ) {
@@ -41,8 +41,6 @@ function apb_shortcode( $attributes ) {
     wp_enqueue_script( 'apb-js' );
     wp_enqueue_style( 'bible-navigation' );
     wp_enqueue_style( 'tinos' );
-
-    // TODO: add chosen.js and restyle chapters dropdown to match book
 
     return $shortcode_content;
 }
@@ -98,6 +96,10 @@ function display_selection_form() {
     echo '<input type="hidden" id="language" name="language" value="' . $language . '"/>';
     echo '<input type="submit" class="button button-primary" value="&rarr;">';
     echo '</form>';
+
+    wp_enqueue_script( 'chosen' );
+    wp_enqueue_style( 'chosen' );
+    wp_add_inline_script( 'chosen', 'jQuery(".bible-navigation select").chosen();' );
 
     return ob_get_clean();
 }
