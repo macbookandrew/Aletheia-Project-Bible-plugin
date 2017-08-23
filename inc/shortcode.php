@@ -16,7 +16,7 @@ if ( $_POST && count( $_POST ) > 0 ) {
     }
 }
 // set default parameters
-if ( ! $query_book ) { $query_book = 1; }
+if ( ! $query_book ) { $query_book = $wpdb->get_results( "SELECT `book_id` FROM $apb_TOC_table_name WHERE `language` LIKE '$language' LIMIT 1;" ); }
 if ( ! $query_chapter ) { $query_chapter = 1; }
 
 function apb_shortcode( $attributes ) {
