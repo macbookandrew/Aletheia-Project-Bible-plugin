@@ -11,7 +11,7 @@ add_action( 'admin_init', 'apb_settings_init' );
 global $wpdb;
 global $apb_text_table_name;
 global $apb_TOC_table_name;
-if ( $_GET['create_TOC'] === 'true' ) {
+if ( array_key_exists( 'TOC', $_GET ) && $_GET['create_TOC'] === 'true' ) {
     $wpdb->query("TRUNCATE $apb_TOC_table_name;");
     $wpdb->query( $wpdb->prepare( "INSERT INTO $apb_TOC_table_name (`language`, `book_id`, `localized_book_name`, `chapter_count`) (SELECT `language`, `book_id`, `localized_book_name`, MAX(`chapter_num`) FROM $apb_text_table_name GROUP BY `language`, `localized_book_name` ORDER BY `book_id`);"
     ) );
