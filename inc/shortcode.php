@@ -27,12 +27,15 @@ function apb_shortcode( $attributes ) {
     $shortcode_attributes = shortcode_atts( array(
         'language' => $installation_language,
     ), $attributes);
+
     global $language;
     $language = $shortcode_attributes['language'];
 
+    $shortcode_content = '';
+
     // call form and content functions
-    display_selection_form( $language );
-    display_content( $language );
+    $shortcode_content .= display_selection_form( $language );
+    $shortcode_content .= display_content( $language );
 
     // enqueue style and script
     wp_enqueue_script( 'apb-js' );
@@ -40,6 +43,8 @@ function apb_shortcode( $attributes ) {
     wp_enqueue_style( 'tinos' );
 
     // TODO: add chosen.js and restyle chapters dropdown to match book
+
+    return $shortcode_content;
 }
 add_shortcode( 'apb_display', 'apb_shortcode' );
 
@@ -52,6 +57,8 @@ function display_selection_form() {
 
     // get book names and chapter counts
     $apb_books = $wpdb->get_results( "SELECT `book_id`, `localized_book_name`, `chapter_count` FROM $apb_TOC_table_name WHERE `language` LIKE '$language';" );
+
+    ob_start();
 
     // start form
     echo '<form name="bible-navigation" class="bible-navigation" method="post">';
@@ -92,6 +99,7 @@ function display_selection_form() {
     echo '<input type="submit" class="button button-primary" value="&rarr;">';
     echo '</form>';
 
+    return ob_get_clean();
 }
 
 function display_content() {
@@ -111,9 +119,13 @@ function display_content() {
 
     // TODO: add chapter summary support
 
+    ob_start();
+
+    echo '<section class="bible-content">';
+
     // print content
     if ( $content ) {
-        echo '<section class="bible-content"><ol>';
+        echo '<ol>';
         foreach ( $content as $verse ) {
             $text = $verse->verse_text;
 
@@ -125,14 +137,15 @@ function display_content() {
         }
         echo '</ol>';
         display_selection_form();
-        echo '</section>';
-
 
         if ( defined( 'DOING_AJAX' ) ) {
             die();
         }
     }
 
+    echo '</section>';
+
+    return ob_get_clean();
 }
 
 // handle ajax calls
