@@ -23,6 +23,8 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+CONST TAP_PLUGIN_VERSION = '1.0.3';
+
 global $wpdb;
 global $apb_db_version;
 $apb_db_version = '1.0';
@@ -102,10 +104,10 @@ register_deactivation_hook( __FILE__, 'deactivation' );
 // add assets
 add_action( 'init', 'register_apb_assets' );
 function register_apb_assets() {
-    wp_register_script( 'apb-js', plugins_url( 'inc/frontend.min.js', __FILE__ ), array( 'jquery' ), NULL, true );
+    wp_register_script( 'apb-js', plugins_url( 'inc/frontend.min.js', __FILE__ ), array( 'jquery' ), TAP_PLUGIN_VERSION, true );
     wp_localize_script( 'apb-js', 'apbAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 
-    wp_register_style( 'bible-navigation', plugins_url( 'inc/frontend.css', __FILE__ ) );
+    wp_register_style( 'bible-navigation', plugins_url( 'inc/frontend.css', __FILE__ ), array(), TAP_PLUGIN_VERSION );
     wp_register_style( 'tinos', 'https://fonts.googleapis.com/css?family=Tinos:700&subset=hebrew' );
 
     wp_register_script( 'chosen', 'https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.jquery.min.js', array( 'jquery' ), '1.7.0', true );
