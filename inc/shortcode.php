@@ -62,17 +62,14 @@ function display_selection_form() {
     echo '<form name="bible-navigation" class="bible-navigation" method="post">';
 
     // print JS with number of chapters
-    echo '<script type="text/javascript">';
-    echo 'var thisChapter = ' . $query_chapter . ';';
-    echo 'var chapterCount = new Array(';
+    $chapter_count = '
+    var thisChapter = ' . $query_chapter . ',
+        chapterCount = [';
     foreach ( $apb_books as $apb_book ) {
-        echo $apb_book->chapter_count;
-        if ( $apb_book->book_id !== '66' ) {
-            echo ', ';
-        }
+        $chapter_count .= $apb_book->chapter_count . ',';
     }
-    echo ');' . "\n";
-    echo '</script>';
+    $chapter_count = rtrim( $chapter_count, ',' ) . ']';
+    wp_add_inline_script( 'apb-js', $chapter_count, 'before' );
 
     // print book menu
     echo '<select id="book" name="book">';
