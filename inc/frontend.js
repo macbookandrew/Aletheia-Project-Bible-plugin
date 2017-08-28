@@ -23,9 +23,6 @@
                     console.log('success!');
                     $('.bible-content').fadeOut(function(){$('.bible-content').html(response).fadeIn()});
                     // TODO: fade out before submission and fade in after content comes back
-                    $('html, body').animate({
-                        scrollTop: ($('.bible-content').offset().top)
-                    },500);
                     // TODO: add history.pushState and URL support
                 },
                 error: function(response) {
