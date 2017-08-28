@@ -167,6 +167,9 @@ Note: if you can’t find a language code here, check the official [Library of C
 
 # Changelog
 
+## 1.0.4
+- Fix some errors
+
 ## 1.0.3
 - Add chosen.js and fix some errors
 
