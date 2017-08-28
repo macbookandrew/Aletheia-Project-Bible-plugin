@@ -5,19 +5,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // get parameters from query string
-global $query_book;
-global $query_chapter;
-global $language;
-if ( $_POST && count( $_POST ) > 0 ) {
-    $query_book = esc_html( $_POST['book'] );
-    $query_chapter = esc_html( $_POST['chapter'] );
-    if ( ! $language ) {
-        $language = esc_html( $_POST['language'] );
+function apb_get_globals() {
+    global $wpdb;
+    global $apb_TOC_table_name;
+    global $query_book;
+    global $query_chapter;
+    global $language;
+    if ( $_POST && count( $_POST ) > 0 ) {
+        $query_book = esc_html( $_POST['book'] );
+        $query_chapter = esc_html( $_POST['chapter'] );
+        if ( ! $language ) {
+            $language = esc_html( $_POST['language'] );
+        }
     }
+
+    // set default parameters
+    if ( ! $query_book ) { $query_book = 1; }
+    if ( ! $query_chapter ) { $query_chapter = 1; }
 }
-// set default parameters
-if ( ! $query_book ) { $query_book = $wpdb->get_results( "SELECT `book_id` FROM $apb_TOC_table_name WHERE `language` LIKE '$language' LIMIT 1;" ); }
-if ( ! $query_chapter ) { $query_chapter = 1; }
 
 function apb_shortcode( $attributes ) {
     // get setting from database
@@ -47,6 +52,7 @@ function apb_shortcode( $attributes ) {
 add_shortcode( 'apb_display', 'apb_shortcode' );
 
 function display_selection_form() {
+    apb_get_globals();
     global $wpdb;
     global $apb_TOC_table_name;
     global $query_book;
@@ -55,6 +61,7 @@ function display_selection_form() {
 
     // get book names and chapter counts
     $apb_books = $wpdb->get_results( "SELECT `book_id`, `localized_book_name`, `chapter_count` FROM $apb_TOC_table_name WHERE `language` LIKE '$language';" );
+    $this_book_chapter_count = $apb_books[( $query_book - 1 )]->chapter_count;
 
     ob_start();
 
@@ -82,7 +89,7 @@ function display_selection_form() {
 
     // print chapter menu
     echo '<select id="chapter" name="chapter">';
-    for ( $i = 1; $i <= $apb_books[( $query_book - 1 )]->chapter_count; $i++ ) {
+    for ( $i = 1; $i <= $this_book_chapter_count; $i++ ) {
         echo '<option value="' . $i . '"';
         if ( $i == $query_chapter ) { echo ' selected="selected"'; }
         echo '>' . $i . '</option>' . "\n";
@@ -107,6 +114,7 @@ function display_content() {
     global $query_book;
     global $query_chapter;
     global $language;
+    apb_get_globals();
 
     // query database
     $content = $wpdb->get_results( $wpdb->prepare(
